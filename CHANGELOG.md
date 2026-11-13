@@ -1,6 +1,12 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
+## Unreleased
+
+- Checkpoint a runtime-neutral vault port and dependency-boundary tests. The
+  package still resolves GDC dependencies, so the migration is incomplete and
+  this checkpoint is not release-ready.
+
 ## 0.5.5 - 2026-11-04
 
 - Filter subject-card index discovery by an optional normalized ISO 3166-1
