@@ -1,10 +1,10 @@
-// Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0.
 // Flow contract: 1) a resolved organization controller assigns one exact professional profile to subject management; 2) the SDK builds separate subject Group, membership and Consent operations; 3) passenger transport receives read-only immunization access. Authorization invariant: no Group membership, sector, vehicle Location or shared login grants authority alone. Persistence invariant: this runtime-neutral SDK only returns ordered claims-first plans and never writes or imports a vet-* package.
+// Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0.
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
 
-import { HealthcareActorRoles } from 'gdc-common-utils-ts/constants/healthcare'
+import { HealthcareActorRoles } from 'sos-data-utils-ts/healthcare-roles'
 import {
   ORGANIZATION_SUBJECT_GROUP_ACCESS_TEST_DATA,
   OrganizationSubjectGroupCapabilities,

@@ -1,6 +1,6 @@
 // Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0.
 
-import type { BundleEntry, BundleJsonApi } from 'gdc-common-utils-ts/models/bundle'
+import type { BundleEntry, BundleJsonApi } from 'sos-data-utils-ts/bundle-contract'
 import { analyzeBundleChangesResponse } from './bundle-changes-response.js'
 
 export const BundleSyncKinds = Object.freeze({

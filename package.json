@@ -12,6 +12,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./communication-message-draft": {
+      "types": "./dist/communication-message-draft.d.ts",
+      "default": "./dist/communication-message-draft.js"
+    },
     "./vault-repository": {
       "types": "./dist/vault-repository.d.ts",
       "default": "./dist/vault-repository.js"
@@ -76,7 +80,7 @@
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "npm run clean && tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node --test tests/*.test.mjs",
+    "test": "npm run build && node --test --test-concurrency=1 tests/*.test.mjs",
     "check": "npm run typecheck && npm test",
     "prepack": "npm run check"
   },
@@ -84,9 +88,8 @@
     "@noble/ciphers": "2.4.0",
     "@noble/hashes": "2.4.0",
     "@noble/post-quantum": "0.7.1",
-    "fhir-data-utils-ts": "0.6.20",
-    "gdc-common-utils-ts": "2.9.21",
-    "sos-data-utils-ts": "0.6.22"
+    "fhir-data-utils-ts": "0.6.24",
+    "sos-data-utils-ts": "0.6.35"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

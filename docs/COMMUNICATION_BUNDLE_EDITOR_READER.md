@@ -1,9 +1,8 @@
 # Communication Bundle editor and reader
 
-`sos-sdk-core-ts` owns the high-level SOS extension. It extends the existing
-`gdc-common-utils-ts` `BundleEditor`,
-`BundleReader` and `CommunicationAttachedBundleSession`; it does not create a
-parallel editor lifecycle. `fhir-data-utils-ts` owns neutral FHIR types,
+`sos-sdk-core-ts` owns Communication orchestration and attached-Bundle state.
+It consumes the SOS data package's claims-first `BundleEditor` and
+`BundleReader`. `fhir-data-utils-ts` owns neutral FHIR types,
 import/materialization, validation and flat-claim projections.
 
 The invariant is always:
@@ -76,9 +75,9 @@ outer resource that is not a batch Bundle.
   retry and persistence stay in runtime packages.
 - GW persistence receives independently projected flat-claim resources. Direct
   claims CRUD is an internal storage boundary, not the participant wire format.
-- The SOS editor subclasses the established GDC Bundle editor/reader and the
-  attached-Bundle session. A future shared implementation can replace that
-  base behind this SOS API without migrating each downstream consumer separately.
+- The SOS editor consumes SOS-owned batch contracts and the Core-owned session.
+  Attachment bytes derive from the session's held Bundle; no frozen-project
+  implementation participates in the lifecycle.
 - `AppointmentCommunicationBundleEditor` and `FhirSchedulingClient` are named
   after their FHIR responsibilities. Product packages must not introduce
   `HumanAppointment`, `VeterinaryAppointment`, `HumanCommunication` or similar

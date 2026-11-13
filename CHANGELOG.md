@@ -3,6 +3,12 @@
 
 ## Unreleased
 
+- Own Communication attachment state and consume SOS batch contracts plus FHIR
+  claim catalogs. Remove every frozen-project runtime import and direct package
+  dependency. All 64 existing functional/source tests pass against local shared
+  archives; the historical registry lock still blocks the release guard until
+  corrected dependency versions are published and pinned.
+
 - Checkpoint a runtime-neutral vault port and dependency-boundary tests. The
   package still resolves GDC dependencies, so the migration is incomplete and
   this checkpoint is not release-ready.

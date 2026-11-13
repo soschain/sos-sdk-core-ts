@@ -1,11 +1,10 @@
-import { BundleEditor, BundleOperations, BundleTypes } from 'gdc-common-utils-ts/utils/bundle-editor'
-import { BundleReader } from 'gdc-common-utils-ts/utils/bundle-reader'
+import { BundleEditor, BundleOperations, BundleTypes, BundleReader } from 'sos-data-utils-ts/bundle-contract'
 import {
   CommunicationAttachedBundleSession,
   CommunicationClaimsContext,
-} from 'gdc-common-utils-ts/utils/communication-attached-bundle-session'
-import { decodeAttachedBundleFromCommunicationClaims } from 'gdc-common-utils-ts/utils/communication-didcomm-payload'
-import { CommunicationClaim } from 'gdc-common-utils-ts/models/interoperable-claims/communication-claims'
+  decodeAttachedBundleFromCommunicationClaims,
+} from './communication-attached-bundle-session.js'
+import { CommunicationClaim } from 'fhir-data-utils-ts'
 import { AppointmentClaim, DocumentReferenceClaim, type FhirResource } from 'fhir-data-utils-ts'
 
 export type CommunicationInnerBundleType = 'document' | 'batch' | 'collection'
@@ -65,7 +64,7 @@ export type IndividualPublicHealthStatisticsReportCommunicationInput =
   )
 
 /**
- * Product-neutral extension of the existing GDC BundleEditor.
+ * Product-neutral extension of the SOS-owned claims-first Bundle editor.
  *
  * The inherited editor owns the canonical outer claims-first batch. Each
  * staged message is a CommunicationAttachedBundleSession, so the existing

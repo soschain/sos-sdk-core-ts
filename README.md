@@ -31,7 +31,7 @@ product-specific behavior.
 The canonical architecture keeps both shared layers visible:
 
 ```text
-gdc-* frozen
+fhir-data-utils-ts + antifraud-data-utils-ts
     ↓
 sos-data-utils-ts
     ↓
@@ -47,11 +47,10 @@ persistence and jobs; those adapters do not belong here.
 Git, workspace, vendored and `file:` dependencies are forbidden in committed
 or deployed dependency state.
 
-The cross-product Bundle/Communication editor and reader are owned here as
-high-level extensions of the existing `gdc-common-utils-ts` `BundleEditor`,
-`BundleReader` and `CommunicationAttachedBundleSession`. They preserve those
-APIs instead of duplicating their attachment or claims-first lifecycle, while
-`fhir-data-utils-ts` supplies neutral import, projection and validation tools.
+The cross-product Communication editor, reader and attached-Bundle session are
+owned here. They consume the SOS data package's claims-first `BundleEditor`
+and `BundleReader`; `fhir-data-utils-ts` supplies neutral claim names, import,
+projection and validation tools. No frozen project supplies their implementation.
 Follow the
 [clinical accessor adoption matrix](https://github.com/soschain/sos-data-utils-ts/blob/main/docs/CLINICAL_TYPED_ACCESSOR_ADOPTION.md)
 before changing dependencies: unaffected portals and assistants are not forced
