@@ -12,6 +12,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./manager-error": {
+      "types": "./dist/manager-error.d.ts",
+      "default": "./dist/manager-error.js"
+    },
     "./profile-sealer": {
       "types": "./dist/profile-sealer.d.ts",
       "default": "./dist/profile-sealer.js"
