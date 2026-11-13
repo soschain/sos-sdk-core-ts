@@ -12,6 +12,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./profile-sealer": {
+      "types": "./dist/profile-sealer.d.ts",
+      "default": "./dist/profile-sealer.js"
+    },
     "./communication-message-draft": {
       "types": "./dist/communication-message-draft.d.ts",
       "default": "./dist/communication-message-draft.js"
