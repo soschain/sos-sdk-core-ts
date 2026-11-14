@@ -3,6 +3,8 @@
 
 ## Unreleased
 
+## 0.6.0 - 2026-11-14
+
 - Pin the published independent Antifraud, FHIR and SOS Data contracts. Remove
   the resolved GDC dependency graph and correct the shared-layer ownership guide.
   All 91 native checks, including strict registry and public runtime guards, pass.
