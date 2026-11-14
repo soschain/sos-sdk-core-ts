@@ -10,14 +10,17 @@ The public repository begins from a clean 2026 source snapshot. The retained
 the former Git push history.
 
 Shared SOS orchestration includes [equipment calibration and operating authorization](docs/EQUIPMENT_COMPLIANCE.md) without embedding product roles or persistence plumbing.
+The public vault import path re-exports Antifraud's neutral record, query and
+four-method repository contracts. Storage adapters, key custody and transaction
+capabilities remain explicit runtime responsibilities.
 ## Blocking local-first SDK release
 
 The canonical contract is [`SDK_LAYERING.md`](https://github.com/soschain/sos-data-utils-ts/blob/main/docs/SDK_LAYERING.md).
 Merge and push validated shared dependency sources to `main`, create immutable
 unpublished tarballs from those main commits with `npm pack`, and install them
-temporarily with `--no-save`. Prove the real local SOS channel (portal, phone
-service, chatbot or other supported channel) -> BFF or channel service ->
-high-level SDK -> configured gateway journey without skips. Then merge the consumer source
+temporarily with `--no-save`. Prove a real local journey without skips using a
+portal, phone service, chatbot or other supported channel. It calls its BFF or
+channel service, which uses the high-level SDK and configured gateway. Then merge the consumer source
 to `main`, publish the exact commits bottom-up, pin exact registry versions and
 lockfiles, repeat affected local gates, and only then promote to staging.
 Never commit a tarball or `file:`, Git or workspace dependency.
@@ -28,30 +31,27 @@ builders come from `sos-data-utils-ts`; this SDK
 owns reusable authorization and orchestration without Node, browser, gateway or
 product-specific behavior.
 
-The canonical architecture keeps both shared layers visible:
-
-```text
-gdc-* frozen
-    ↓
-sos-data-utils-ts
-    ↓
-sos-sdk-core-ts
-    └──→ sos-sdk-node-ts
-```
+SOS Data imports neutral FHIR and Antifraud contracts. SOS SDK Core imports
+SOS Data and the independent FHIR/Antifraud contracts it uses. SOS SDK Node
+imports Core and adds its platform adapters.
 
 Consumers may also depend directly on `sos-data-utils-ts` when they import or
 expose its types. `sos-sdk-core-ts` never depends on or reexports a downstream
 product SDK. `sos-sdk-node-ts` owns SOSCHAIN-specific Node transport,
 persistence and jobs; those adapters do not belong here.
 
+The [clinical creator and successor profile](docs/CLINICAL_CREATOR_PROFILE.md)
+keeps stable person, assignment and document-author identities separate.
+Matching caller-verified aliases does not authenticate them, and a document
+successor decision never authorizes an actor or a delete.
+
 Git, workspace, vendored and `file:` dependencies are forbidden in committed
 or deployed dependency state.
 
-The cross-product Bundle/Communication editor and reader are owned here as
-high-level extensions of the existing `gdc-common-utils-ts` `BundleEditor`,
-`BundleReader` and `CommunicationAttachedBundleSession`. They preserve those
-APIs instead of duplicating their attachment or claims-first lifecycle, while
-`fhir-data-utils-ts` supplies neutral import, projection and validation tools.
+The cross-product Communication editor, reader and attached-Bundle session are
+owned here. They consume the SOS data package's claims-first `BundleEditor`
+and `BundleReader`; `fhir-data-utils-ts` supplies neutral claim names, import,
+projection and validation tools. No frozen project supplies their implementation.
 Follow the
 [clinical accessor adoption matrix](https://github.com/soschain/sos-data-utils-ts/blob/main/docs/CLINICAL_TYPED_ACCESSOR_ADOPTION.md)
 before changing dependencies: unaffected portals and assistants are not forced

@@ -10,9 +10,8 @@ import {
   appointmentFhirR4ToFlat,
   documentReferenceFhirR4ToFlat,
 } from 'fhir-data-utils-ts'
-import { BundleEditor } from 'gdc-common-utils-ts/utils/bundle-editor'
-import { BundleReader } from 'gdc-common-utils-ts/utils/bundle-reader'
-import { CommunicationAttachedBundleSession } from 'gdc-common-utils-ts/utils/communication-attached-bundle-session'
+import { BundleEditor, BundleReader } from 'sos-data-utils-ts/bundle-contract'
+import { CommunicationAttachedBundleSession } from '../dist/communication-attached-bundle-session.js'
 import {
   AppointmentCommunicationBundleEditor,
   CommunicationBundleEditor,

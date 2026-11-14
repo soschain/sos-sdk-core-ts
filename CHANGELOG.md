@@ -1,6 +1,45 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
+## Unreleased
+
+- Pin the published independent Antifraud, FHIR and SOS Data contracts. Remove
+  the resolved GDC dependency graph and correct the shared-layer ownership guide.
+  All 91 native checks, including strict registry and public runtime guards, pass.
+
+- Preserve the public SOS vault import path through neutral Antifraud record,
+  query and four-method repository types. Keep persistence and transactions in
+  runtime adapters and retain the distinct gateway repository interface.
+- Own portable clinical creator binding normalization, caller-verified evidence
+  matching and source-author/attester provenance projections over independent
+  Antifraud, FHIR and SOS Data contracts. Reject ambiguous bindings and retain
+  the historical persisted assignment identity. Keep actual actor admission,
+  tenant/resource permissions and deletion decisions with callers.
+- Own the narrow same-owner, strictly newer document-successor policy and the
+  compatibility document-author graph resolver without treating descriptive
+  graph ownership as authenticated authority.
+- Own portable encrypted-blob externalization/hydration behind explicit reader
+  and writer ports, consuming SOS Data record/projection contracts. Preserve
+  metadata and source envelopes on failure; reject malformed JSON, non-object
+  envelopes and missing blob references. Keep backend choice and authorization
+  with the host, and reuse the shared record type in the vault port.
+- Own operational ManagerError and the reviewed issue-to-HTTP mapping, consuming
+  canonical issue codes from FHIR. Preserve string statuses for known codes and
+  return an exception/500 for unknown or prototype-shaped runtime inputs.
+  The full local check passes 71 of 72 tests; the remaining registry lockfile
+  guard still rejects the published predecessor's transitive GDC dependency.
+
+- Own Communication attachment state and consume SOS batch contracts plus FHIR
+  claim catalogs. Replace runtime imports from
+  <https://github.com/Global-DataCare/gdc-common-utils-ts> with owned modules.
+  Functional/source checks pass against local shared archives;
+  the historical registry lock still blocks the release guard until
+  corrected dependency versions are published and pinned.
+
+- Checkpoint a runtime-neutral vault port and dependency-boundary tests. The
+  package still resolves GDC dependencies, so the migration is incomplete and
+  this checkpoint is not release-ready.
+
 ## 0.5.5 - 2026-11-04
 
 - Filter subject-card index discovery by an optional normalized ISO 3166-1
