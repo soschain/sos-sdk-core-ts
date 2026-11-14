@@ -3,6 +3,18 @@
 
 ## Unreleased
 
+- Own portable clinical creator binding normalization, caller-verified evidence
+  matching and source-author/attester provenance projections over independent
+  Antifraud, FHIR and SOS Data contracts. Reject ambiguous bindings and retain
+  the historical persisted assignment identity. Keep actual actor admission,
+  tenant/resource permissions and deletion decisions with callers.
+- Own the narrow same-owner, strictly newer document-successor policy and the
+  compatibility document-author graph resolver without treating descriptive
+  graph ownership as authenticated authority.
+- Clinical profile validation passes 88 of 89 full Core tests, including all
+  17 new runtime/consumer contracts and the public runtime dependency guard.
+  The registry lockfile guard still fails on the published SOS Data predecessor's
+  GDC dependency; this functional checkpoint is not release acceptance.
 - Own portable encrypted-blob externalization/hydration behind explicit reader
   and writer ports, consuming SOS Data record/projection contracts. Preserve
   metadata and source envelopes on failure; reject malformed JSON, non-object

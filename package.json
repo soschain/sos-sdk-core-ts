@@ -12,6 +12,14 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./clinical-creator": {
+      "types": "./dist/clinical-creator.d.ts",
+      "default": "./dist/clinical-creator.js"
+    },
+    "./clinical-resource-replacement": {
+      "types": "./dist/clinical-resource-replacement.d.ts",
+      "default": "./dist/clinical-resource-replacement.js"
+    },
     "./confidential-storage-persistence": {
       "types": "./dist/confidential-storage-persistence.d.ts",
       "default": "./dist/confidential-storage-persistence.js"
@@ -97,6 +105,7 @@
     "prepack": "npm run check"
   },
   "dependencies": {
+    "antifraud-data-utils-ts": "0.2.0",
     "@noble/ciphers": "2.4.0",
     "@noble/hashes": "2.4.0",
     "@noble/post-quantum": "0.7.1",

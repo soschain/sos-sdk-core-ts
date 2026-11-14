@@ -28,21 +28,19 @@ builders come from `sos-data-utils-ts`; this SDK
 owns reusable authorization and orchestration without Node, browser, gateway or
 product-specific behavior.
 
-The canonical architecture keeps both shared layers visible:
-
-```text
-fhir-data-utils-ts + antifraud-data-utils-ts
-    ↓
-sos-data-utils-ts
-    ↓
-sos-sdk-core-ts
-    └──→ sos-sdk-node-ts
-```
+SOS Data imports neutral FHIR and Antifraud contracts. SOS SDK Core imports
+SOS Data and the independent FHIR/Antifraud contracts it uses. SOS SDK Node
+imports Core and adds its platform adapters.
 
 Consumers may also depend directly on `sos-data-utils-ts` when they import or
 expose its types. `sos-sdk-core-ts` never depends on or reexports a downstream
 product SDK. `sos-sdk-node-ts` owns SOSCHAIN-specific Node transport,
 persistence and jobs; those adapters do not belong here.
+
+The [clinical creator and successor profile](docs/CLINICAL_CREATOR_PROFILE.md)
+keeps stable person, assignment and document-author identities separate.
+Matching caller-verified aliases does not authenticate them, and a document
+successor decision never authorizes an actor or a delete.
 
 Git, workspace, vendored and `file:` dependencies are forbidden in committed
 or deployed dependency state.
