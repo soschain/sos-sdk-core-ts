@@ -105,12 +105,12 @@
     "prepack": "npm run check"
   },
   "dependencies": {
-    "antifraud-data-utils-ts": "0.2.0",
     "@noble/ciphers": "2.4.0",
     "@noble/hashes": "2.4.0",
     "@noble/post-quantum": "0.7.1",
-    "fhir-data-utils-ts": "0.6.24",
-    "sos-data-utils-ts": "0.6.35"
+    "antifraud-data-utils-ts": "0.3.0",
+    "fhir-data-utils-ts": "0.7.0",
+    "sos-data-utils-ts": "0.7.0"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

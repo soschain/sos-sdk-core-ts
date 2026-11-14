@@ -3,12 +3,13 @@
 
 ## Unreleased
 
+- Pin the published independent Antifraud, FHIR and SOS Data contracts. Remove
+  the resolved GDC dependency graph and correct the shared-layer ownership guide.
+  All 91 native checks, including strict registry and public runtime guards, pass.
+
 - Preserve the public SOS vault import path through neutral Antifraud record,
   query and four-method repository types. Keep persistence and transactions in
   runtime adapters and retain the distinct gateway repository interface.
-- The neutral storage consumer checks pass with the independent package
-  snapshots. Functional Core validation is 90 of 91 tests; only the registry
-  dependency guard remains unresolved, so this is not release acceptance.
 - Own portable clinical creator binding normalization, caller-verified evidence
   matching and source-author/attester provenance projections over independent
   Antifraud, FHIR and SOS Data contracts. Reject ambiguous bindings and retain
@@ -17,10 +18,6 @@
 - Own the narrow same-owner, strictly newer document-successor policy and the
   compatibility document-author graph resolver without treating descriptive
   graph ownership as authenticated authority.
-- Clinical profile validation passes 88 of 89 full Core tests, including all
-  17 new runtime/consumer contracts and the public runtime dependency guard.
-  The registry lockfile guard still fails on the published SOS Data predecessor's
-  GDC dependency; this functional checkpoint is not release acceptance.
 - Own portable encrypted-blob externalization/hydration behind explicit reader
   and writer ports, consuming SOS Data record/projection contracts. Preserve
   metadata and source envelopes on failure; reject malformed JSON, non-object

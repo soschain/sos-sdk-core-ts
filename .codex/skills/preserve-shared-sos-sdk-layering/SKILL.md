@@ -19,25 +19,22 @@ or workspace dependency.
 
 ## Keep both shared layers
 
-```text
-gdc-* frozen
-    ↓
-sos-data-utils-ts
-    ↓
-sos-sdk-core-ts
-    ├──→ vet-sdk-core-ts
-    ├──→ uhc-sdk-core-ts
-    └──→ sos-sdk-node-ts
-```
+`sos-data-utils-ts` consumes independent Antifraud and FHIR contracts.
+`sos-sdk-core-ts` consumes those contracts and owns runtime-neutral orchestration.
+`sos-sdk-node-ts` consumes the shared layers and owns Node adapters.
+No SOS package imports, depends on, wraps or re-exports a `gdc-*` package,
+directly or transitively. Frozen GDC projects may consume these independent
+packages in a future approved migration.
+
 
 - Move types, schemas, deterministic builders and validators down to
   `sos-data-utils-ts` before consuming them here.
 - Keep only runtime-neutral authorization and orchestration here.
-- Own the shared high-level Communication Bundle extension here. Extend the
-  existing GDC BundleEditor, BundleReader and
-  CommunicationAttachedBundleSession instead of duplicating them; use
-  `fhir-data-utils-ts` only for neutral import, projection and validation.
-  Files remain DocumentReference resources inside the attached inner Bundle.
+- Own the shared high-level Communication Bundle extension here. Consume
+  the independent SOS Data BundleEditor and BundleReader, and keep the attached
+  Bundle session in this orchestration layer. Use `fhir-data-utils-ts` for
+  neutral import, projection and validation. Files remain DocumentReference
+  resources inside the attached inner Bundle.
 - Keep ML-KEM key generation/encapsulation, HKDF recipient wrapping, the
   historical message-seed-to-CEK derivation and AES-GCM content protection
   here. Text and audio are bytes under one envelope; only protected content
