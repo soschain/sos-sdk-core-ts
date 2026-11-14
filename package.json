@@ -12,6 +12,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./confidential-storage-persistence": {
+      "types": "./dist/confidential-storage-persistence.d.ts",
+      "default": "./dist/confidential-storage-persistence.js"
+    },
     "./manager-error": {
       "types": "./dist/manager-error.d.ts",
       "default": "./dist/manager-error.js"

@@ -3,16 +3,21 @@
 
 ## Unreleased
 
+- Own portable encrypted-blob externalization/hydration behind explicit reader
+  and writer ports, consuming SOS Data record/projection contracts. Preserve
+  metadata and source envelopes on failure; reject malformed JSON, non-object
+  envelopes and missing blob references. Keep backend choice and authorization
+  with the host, and reuse the shared record type in the vault port.
 - Own operational ManagerError and the reviewed issue-to-HTTP mapping, consuming
   canonical issue codes from FHIR. Preserve string statuses for known codes and
   return an exception/500 for unknown or prototype-shaped runtime inputs.
-  The full local check passes 67 of 68 tests; the remaining registry lockfile
+  The full local check passes 71 of 72 tests; the remaining registry lockfile
   guard still rejects the published predecessor's transitive GDC dependency.
 
 - Own Communication attachment state and consume SOS batch contracts plus FHIR
   claim catalogs. Remove every frozen-project runtime import and direct package
-  dependency. All 64 existing functional/source tests pass against local shared
-  archives; the historical registry lock still blocks the release guard until
+  dependency. Functional/source checks pass against local shared archives;
+  the historical registry lock still blocks the release guard until
   corrected dependency versions are published and pinned.
 
 - Checkpoint a runtime-neutral vault port and dependency-boundary tests. The

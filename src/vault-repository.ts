@@ -1,5 +1,6 @@
-/** A record inside an adapter-owned logical collection; identifiers confer no authority. */
-export interface VaultRecord {id:string}
+import type {RecordBase} from 'sos-data-utils-ts/confidential-storage'
+/** Compatibility name for the shared data record; identifiers confer no authority. */
+export type VaultRecord=RecordBase
 
 export interface VaultQueryCondition {
   attribute:string
