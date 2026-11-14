@@ -15,8 +15,9 @@
   guard still rejects the published predecessor's transitive GDC dependency.
 
 - Own Communication attachment state and consume SOS batch contracts plus FHIR
-  claim catalogs. Remove every frozen-project runtime import and direct package
-  dependency. Functional/source checks pass against local shared archives;
+  claim catalogs. Replace runtime imports from
+  <https://github.com/Global-DataCare/gdc-common-utils-ts> with owned modules.
+  Functional/source checks pass against local shared archives;
   the historical registry lock still blocks the release guard until
   corrected dependency versions are published and pinned.
 

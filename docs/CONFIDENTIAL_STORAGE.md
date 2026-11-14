@@ -14,3 +14,6 @@ The minimal record guard recognizes shape; it does not establish a complete
 resource schema, valid lifecycle transition, authenticated author or access right.
 The same runtime can use a memory, mobile or durable blob adapter without making
 backend selection part of the data contract.
+
+Original compatibility source: <https://github.com/Global-DataCare/gdc-common-utils-ts>,
+reviewed at the [persistence helper implementation](https://github.com/Global-DataCare/gdc-common-utils-ts/blob/f4031b221216cacd9917d1d20c5ff0b03bed7045/src/utils/confidential-storage-persistence.ts).
