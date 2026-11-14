@@ -1,25 +1,10 @@
-import type {RecordBase} from 'sos-data-utils-ts/confidential-storage'
-/** Compatibility name for the shared data record; identifiers confer no authority. */
-export type VaultRecord=RecordBase
-
-export interface VaultQueryCondition {
-  attribute:string
-  equals?:unknown
-  in?:unknown[]
-}
-
-/** Portable query input shared by SOS vault adapters. */
-export interface VaultQuery {
-  where?:VaultQueryCondition[]
-  orderBy?:{attribute:string;direction:'asc'|'desc'}
-  limit?:number
-  offset?:number
-}
-
-/** SOS-owned storage port. Authentication, collection scope and transactions remain explicit host capabilities. */
-export interface IVaultRepository {
-  put<T extends VaultRecord>(collectionName:string,records:T|T[]):Promise<boolean>
-  get<T extends VaultRecord>(collectionName:string,id:string):Promise<T|undefined>
-  query<T extends VaultRecord>(collectionName:string,query:VaultQuery):Promise<T[]>
-  delete(collectionName:string,id:string):Promise<boolean>
-}
+/** Existing SOS public import path for neutral Antifraud storage contracts.
+ * Authentication, scope, transaction capability and persistence adapters remain
+ * explicit host/runtime responsibilities. The richer gateway port is distinct.
+ */
+export type {
+  VaultRecord,
+  VaultQueryCondition,
+  VaultQuery,
+  IVaultRepository,
+} from 'antifraud-data-utils-ts/vault-repository'

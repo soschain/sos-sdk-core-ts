@@ -3,6 +3,12 @@
 
 ## Unreleased
 
+- Preserve the public SOS vault import path through neutral Antifraud record,
+  query and four-method repository types. Keep persistence and transactions in
+  runtime adapters and retain the distinct gateway repository interface.
+- The neutral storage consumer checks pass with the independent package
+  snapshots. Functional Core validation is 90 of 91 tests; only the registry
+  dependency guard remains unresolved, so this is not release acceptance.
 - Own portable clinical creator binding normalization, caller-verified evidence
   matching and source-author/attester provenance projections over independent
   Antifraud, FHIR and SOS Data contracts. Reject ambiguous bindings and retain

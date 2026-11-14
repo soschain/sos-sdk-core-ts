@@ -10,14 +10,17 @@ The public repository begins from a clean 2026 source snapshot. The retained
 the former Git push history.
 
 Shared SOS orchestration includes [equipment calibration and operating authorization](docs/EQUIPMENT_COMPLIANCE.md) without embedding product roles or persistence plumbing.
+The public vault import path re-exports Antifraud's neutral record, query and
+four-method repository contracts. Storage adapters, key custody and transaction
+capabilities remain explicit runtime responsibilities.
 ## Blocking local-first SDK release
 
 The canonical contract is [`SDK_LAYERING.md`](https://github.com/soschain/sos-data-utils-ts/blob/main/docs/SDK_LAYERING.md).
 Merge and push validated shared dependency sources to `main`, create immutable
 unpublished tarballs from those main commits with `npm pack`, and install them
-temporarily with `--no-save`. Prove the real local SOS channel (portal, phone
-service, chatbot or other supported channel) -> BFF or channel service ->
-high-level SDK -> configured gateway journey without skips. Then merge the consumer source
+temporarily with `--no-save`. Prove a real local journey without skips using a
+portal, phone service, chatbot or other supported channel. It calls its BFF or
+channel service, which uses the high-level SDK and configured gateway. Then merge the consumer source
 to `main`, publish the exact commits bottom-up, pin exact registry versions and
 lockfiles, repeat affected local gates, and only then promote to staging.
 Never commit a tarball or `file:`, Git or workspace dependency.
