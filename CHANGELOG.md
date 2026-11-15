@@ -3,6 +3,14 @@
 
 ## Unreleased
 
+- Own the local Consent access editor over the existing attached-Bundle session,
+  using SOS contracts and canonical FHIR claims. Preserve entry metadata,
+  actor/role/target separation and proposal status; reject invalid periods
+  before mutation. Editing never constitutes controller approval or persistence.
+- Preserve provider scalar-array claims, distinct staged identifiers without
+  optional locators, fixed role-bucket order and opaque actor constraints.
+  Keep unknown purpose labels as text instead of inherited object properties.
+
 ## 0.6.0 - 2026-11-14
 
 - Pin the published independent Antifraud, FHIR and SOS Data contracts. Remove

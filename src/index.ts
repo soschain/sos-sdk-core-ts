@@ -28,3 +28,4 @@ export * from './profile-sealer.js'
 export * from './manager-error.js'
 export * from './clinical-creator.js'
 export * from './clinical-resource-replacement.js'
+export * from './consent-access-editor.js';

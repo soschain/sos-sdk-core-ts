@@ -87,6 +87,10 @@
     "./subject-card-provider-discovery": {
       "types": "./dist/subject-card-provider-discovery.d.ts",
       "default": "./dist/subject-card-provider-discovery.js"
+    },
+    "./consent-access-editor": {
+      "types": "./dist/consent-access-editor.d.ts",
+      "default": "./dist/consent-access-editor.js"
     }
   },
   "files": [
