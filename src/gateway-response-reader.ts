@@ -71,3 +71,36 @@ export function readFirstBundleResourceFromResponseBody(input:unknown):ResourceR
   const reader=new BundleReader(unwrapBundleLikeResponseBody(input))
   return record(reader.getEntries()[0]?.resource)
 }
+
+export type BundleResponseSummary=Readonly<{
+  totalOperations:number;successfulOperations:number;errorOperations:number
+  hasWarnings:boolean;hasErrors:boolean;issueDiagnostics:readonly string[]
+}>
+
+/** Response counts only: no submitted-change correlation, authorization or delivery acknowledgement. */
+export function summarizeBundleResponse(input:unknown):BundleResponseSummary{
+  const body=unwrapBundleLikeResponseBody(input)
+  const entries=Array.isArray(body.entry)?body.entry:Array.isArray(body.data)?body.data:[]
+  let successfulOperations=0,hasWarnings=false,hasErrors=false
+  const issueDiagnostics:string[]=[]
+  for(const raw of entries){
+    if(raw===null||raw===undefined)throw new TypeError('bundle_response_entry_required')
+    const response=record(record(raw)?.response)
+    const status=typeof response?.status==='string'?response.status.trim():''
+    const outcome=record(response?.outcome)
+    const issues=Array.isArray(outcome?.issue)?outcome.issue:[]
+    let blocking=false
+    for(const rawIssue of issues){
+      const issue=record(rawIssue)
+      if(!issue)continue
+      const severity=issue.severity
+      if(severity==='warning'){hasWarnings=true;blocking=true}
+      if(severity==='fatal'||severity==='error'){hasErrors=true;blocking=true}
+      const diagnostic=typeof issue.diagnostics==='string'&&issue.diagnostics.trim()
+        ?issue.diagnostics:record(issue.details)?.text
+      if(typeof diagnostic==='string'&&diagnostic.trim())issueDiagnostics.push(diagnostic)
+    }
+    if(/^2\d\d$/u.test(status)&&!blocking)successfulOperations++
+  }
+  return {totalOperations:entries.length,successfulOperations,errorOperations:entries.length-successfulOperations,hasWarnings,hasErrors,issueDiagnostics}
+}

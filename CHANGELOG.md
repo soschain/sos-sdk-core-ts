@@ -3,6 +3,10 @@
 
 ## Unreleased
 
+- Summarize response-only operation counts and ordered diagnostics without
+  inventing submitted-change correlation. Preserve exact status classification,
+  warning/fatal/error distinctions and input immutability.
+
 - Preserve generic mixed-resource Bundle selection; enforce the resource-kind
   preflight exclusively in `openConsent`.
 
