@@ -3,6 +3,9 @@
 
 ## Unreleased
 
+- Reject opening a non-Consent resource before changing the current Consent
+  selection or Communication subject and attachment state.
+
 - Own explicit tenant resource-action path formatting and transport-neutral
   search response navigation. Preserve eight-segment wire routes, response
   order and historical aggregate inputs without interpreting extracted data
