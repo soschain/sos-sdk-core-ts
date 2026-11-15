@@ -3,6 +3,9 @@
 
 ## Unreleased
 
+- Preserve generic mixed-resource Bundle selection; enforce the resource-kind
+  preflight exclusively in `openConsent`.
+
 - Reject opening a non-Consent resource before changing the current Consent
   selection or Communication subject and attachment state.
 

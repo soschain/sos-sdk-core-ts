@@ -43,6 +43,12 @@ export class ConsentAccessEditor extends CommunicationAttachedBundleSession{
   }
   addConsent(input:UpsertClaimsResourceEntryInput):this{return this.upsertActiveConsentEntry(input)}
   override selectActiveEntry(selection:ActiveEntrySelection):this{
+    super.selectActiveEntry(selection)
+    const subject=text(this.getActiveEntry()?.resource?.meta?.claims?.[C.subject])
+    if(subject)this.setCommunicationSubject(subject)
+    return this
+  }
+  openConsent(selection:ActiveEntrySelection):this{
     const entries=this.getBundleInMemory().data
     const position=selection.position??selection.index
     let candidate
@@ -56,12 +62,8 @@ export class ConsentAccessEditor extends CommunicationAttachedBundleSession{
       candidate=matches[0]
     }
     if(candidate?.resource?.resourceType!==ResourceTypesFhirR4.Consent)throw new TypeError('consent_active_entry_required')
-    super.selectActiveEntry(selection)
-    const subject=text(candidate.resource.meta?.claims?.[C.subject])
-    if(subject)this.setCommunicationSubject(subject)
-    return this
+    return this.selectActiveEntry(selection)
   }
-  openConsent(selection:ActiveEntrySelection):this{return this.selectActiveEntry(selection)}
   saveConsent():this{return this.saveAndReleaseActiveEntry()}
   getConsentViewModel():ConsentViewModel{
     const entry=this.getActiveEntry()
