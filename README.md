@@ -154,8 +154,17 @@ Unwrapping inspects one `body` level only when it contains a `data` or `entry`
 array. First-resource selection reuses the SOS Data Bundle reader and does not
 skip an absent first resource to select a later result.
 
-These projections do not classify entries as successful or grant access. Keep
-`analyzeBundleChangesResponse` for write-result status and identity correlation.
+`summarizeBundleResponse` and `BundleResponseSummary` provide response-only
+operation counts, fatal/error and warning indicators, and ordered diagnostics.
+An operation succeeds only with a trimmed three-digit 2xx status and no warning,
+error or fatal issue. Warning blocks that entry's success without becoming a
+fatal/error indicator. Nonblank diagnostics retain original text and fall back
+to `details.text`. Native `entry` arrays precede operational `data` arrays;
+one supported transport body is unwrapped. Inputs are never changed.
+
+Counts do not establish submitted-change identity, authorization or delivery.
+Keep `analyzeBundleChangesResponse` for stable submitted-change correlation;
+its distinct status/outcome rules are unchanged.
 This small API does not implement the broader clinical document Bundle reader.
 
 ## Multi-recipient secure messages
