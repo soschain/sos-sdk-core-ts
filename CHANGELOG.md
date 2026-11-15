@@ -1,7 +1,7 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
-## Unreleased
+## 0.7.0 - 2026-11-15
 
 - Summarize response-only operation counts and ordered diagnostics without
   inventing submitted-change correlation. Preserve exact status classification,

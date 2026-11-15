@@ -1,6 +1,6 @@
 {
   "name": "sos-sdk-core-ts",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Runtime-neutral shared orchestration for multichannel healthcare and emergency services",
   "license": "Apache-2.0",
   "author": "Connecting Solution & Applications Ltd",
@@ -122,7 +122,7 @@
     "@noble/post-quantum": "0.7.1",
     "antifraud-data-utils-ts": "0.3.0",
     "fhir-data-utils-ts": "0.7.0",
-    "sos-data-utils-ts": "0.7.0"
+    "sos-data-utils-ts": "0.8.0"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
