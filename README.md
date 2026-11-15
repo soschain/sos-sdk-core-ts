@@ -13,6 +13,23 @@ Shared SOS orchestration includes [equipment calibration and operating authoriza
 The public vault import path re-exports Antifraud's neutral record, query and
 four-method repository contracts. Storage adapters, key custody and transaction
 capabilities remain explicit runtime responsibilities.
+
+`createConsentAccessEditor` from `sos-sdk-core-ts/consent-access-editor` edits
+one shared claims-first permission Bundle through the existing attached-Bundle
+session. It preserves request metadata and unrelated claims, separates actors,
+roles and targets, and derives the Communication attachment from the held Bundle.
+The editor leaves proposal status unchanged: editing a permit does not activate
+it, verify evidence, accept an invitation, persist data or grant controller authority.
+The owning BFF/GW use case still performs those checks and transitions.
+Opaque original actor selectors remain in the held claims when editing the
+classified contact view; they are neither erased nor relabeled as verified contacts.
+
+Use SOS Data's `HealthcarePermissionSummarySections` for the operational
+`LOINC|code` permission profile. Its existing `HealthcareSummarySections` keeps
+native `http://loinc.org|code` tokens. Native FHIR projection remains in FHIR
+utilities. Historical wire comparisons use the original
+[Common Utilities repository](https://github.com/Global-DataCare/gdc-common-utils-ts)
+as read-only evidence; no legacy implementation is imported or wrapped.
 ## Blocking local-first SDK release
 
 The canonical contract is [`SDK_LAYERING.md`](https://github.com/soschain/sos-data-utils-ts/blob/main/docs/SDK_LAYERING.md).
