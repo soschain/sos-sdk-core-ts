@@ -43,8 +43,21 @@ export class ConsentAccessEditor extends CommunicationAttachedBundleSession{
   }
   addConsent(input:UpsertClaimsResourceEntryInput):this{return this.upsertActiveConsentEntry(input)}
   override selectActiveEntry(selection:ActiveEntrySelection):this{
+    const entries=this.getBundleInMemory().data
+    const position=selection.position??selection.index
+    let candidate
+    if(position!==undefined){
+      if(!Number.isInteger(position)||position<0||position>=entries.length)throw new TypeError('bundle_entry_position_invalid')
+      candidate=entries[position]
+    }else{
+      if(!selection.fullUrl)throw new TypeError('bundle_entry_selection_required')
+      const matches=entries.filter(entry=>entry.fullUrl===selection.fullUrl)
+      if(matches.length!==1)throw new TypeError('bundle_entry_selection_not_unique')
+      candidate=matches[0]
+    }
+    if(candidate?.resource?.resourceType!==ResourceTypesFhirR4.Consent)throw new TypeError('consent_active_entry_required')
     super.selectActiveEntry(selection)
-    const subject=text(this.getActiveEntry()?.resource?.meta?.claims?.[C.subject])
+    const subject=text(candidate.resource.meta?.claims?.[C.subject])
     if(subject)this.setCommunicationSubject(subject)
     return this
   }
