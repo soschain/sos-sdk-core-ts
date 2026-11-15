@@ -3,6 +3,11 @@
 
 ## Unreleased
 
+- Own explicit tenant resource-action path formatting and transport-neutral
+  search response navigation. Preserve eight-segment wire routes, response
+  order and historical aggregate inputs without interpreting extracted data
+  as authorization or successful mutation outcomes.
+
 - Reject unsupported security-selector shapes before editing or replacing a
   Consent, retaining valid scalar, CSV and string-array claim inputs.
 

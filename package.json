@@ -91,6 +91,14 @@
     "./consent-access-editor": {
       "types": "./dist/consent-access-editor.d.ts",
       "default": "./dist/consent-access-editor.js"
+    },
+    "./gateway-routing": {
+      "types": "./dist/gateway-routing.d.ts",
+      "default": "./dist/gateway-routing.js"
+    },
+    "./gateway-response-reader": {
+      "types": "./dist/gateway-response-reader.d.ts",
+      "default": "./dist/gateway-response-reader.js"
     }
   },
   "files": [

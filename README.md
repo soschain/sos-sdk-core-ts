@@ -133,6 +133,31 @@ separate from the professional attester and transport audit evidence.
 See [docs/CARE_EMERGENCY_AND_ALERT_ORCHESTRATION.md](docs/CARE_EMERGENCY_AND_ALERT_ORCHESTRATION.md)
 for lifecycle, authorization and persistence invariants.
 
+## Gateway route and response navigation
+
+`sos-sdk-core-ts/gateway-routing` exports `buildTenantResourceActionPath`
+and `TenantResourceActionSelector`, composing the existing SOS Data
+`RouteContext` with required version, section, format, resource type and action.
+It formats `/{tenantId}/cds-{jurisdiction}/{version}/{sector}/{section}/{format}/{resourceType}/{action}`.
+Every selector is explicit. Formatting trims boundary whitespace and slashes;
+it preserves wire case and namespaces, including internal slashes. It does not
+validate path injection, choose a provider or establish route authorization.
+Hosts must supply trusted selectors and apply their endpoint admission policy.
+
+`sos-sdk-core-ts/gateway-response-reader` exports
+`extractBundleSearchResources`, `unwrapBundleLikeResponseBody` and
+`readFirstBundleResourceFromResponseBody`. Search extraction reads canonical
+`data[].resource` entries in order, retaining historical aggregate and direct-row
+inputs for read-only compatibility. Nested compatibility traversal is cycle-safe;
+it does not impose a transport size or depth budget. Hosts retain those limits.
+Unwrapping inspects one `body` level only when it contains a `data` or `entry`
+array. First-resource selection reuses the SOS Data Bundle reader and does not
+skip an absent first resource to select a later result.
+
+These projections do not classify entries as successful or grant access. Keep
+`analyzeBundleChangesResponse` for write-result status and identity correlation.
+This small API does not implement the broader clinical document Bundle reader.
+
 ## Multi-recipient secure messages
 
 `sos-sdk-core-ts/secure-message-crypto` protects written and binary-audio
