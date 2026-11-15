@@ -9,6 +9,12 @@ chatbot or other supported channel) -> BFF/service -> high-level SDK -> GW VET
 without skips. Then merge consumer source to `main`, publish exact commits
 bottom-up, pin registry versions and lockfiles, repeat affected local gates,
 and only then stage. Never commit a local package reference or tarball.
+Apply that journey to its access path: Demo proves the local BFF/SDK/vault
+boundary without GW business bootstrap. After relevant local Demo checks,
+exact registry dependencies/lockfiles and the portal build, deploy online Demo.
+Run dev:staging/Test Network lifecycle checks afterward and redeploy fixes;
+they do not hold Demo or prove Test Network/production readiness. Network
+cases retain their own GW/Fabric gates; architecture/auth/privacy remain required.
 
 
 ## Mandatory TDD
