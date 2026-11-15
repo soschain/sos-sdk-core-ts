@@ -3,6 +3,9 @@
 
 ## Unreleased
 
+- Reject unsupported security-selector shapes before editing or replacing a
+  Consent, retaining valid scalar, CSV and string-array claim inputs.
+
 - Own the local Consent access editor over the existing attached-Bundle session,
   using SOS contracts and canonical FHIR claims. Preserve entry metadata,
   actor/role/target separation and proposal status; reject invalid periods
