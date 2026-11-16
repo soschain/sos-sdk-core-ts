@@ -174,6 +174,23 @@ Keep `analyzeBundleChangesResponse` for stable submitted-change correlation;
 its distinct status/outcome rules are unchanged.
 This small API does not implement the broader clinical document Bundle reader.
 
+## Subject-bound clinical document imports
+
+`prepareR4DocumentForSubject(bundle, subjectDid)` is available from the root
+and `sos-sdk-core-ts/subject-bound-document-plan`. Call it after selecting and
+authorizing the individual. It returns a cloned document with indexed claim
+projections, recursive Composition section links and the selected subject's
+references. Existing metadata and claim arrays retain their values, except
+subject/patient bindings. Patient names and internal resource IDs remain
+source fields; business identifiers come from the source identifiers.
+
+The planner uses the explicit semantic, document-support and structural
+profiles in [FHIR Data Utilities](https://github.com/Fundacion-UNID/fhir-data-utils-ts).
+It rejects unsupported resource families, including the R5 EncounterHistory
+family, rather than choosing a converter from a URL or inferring a version.
+It checks the basic document structure; callers still handle identity
+confirmation, authorization, transport and persistence.
+
 ## Multi-recipient secure messages
 
 `sos-sdk-core-ts/secure-message-crypto` protects written and binary-audio
