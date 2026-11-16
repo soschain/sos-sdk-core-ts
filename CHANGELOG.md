@@ -3,6 +3,9 @@
 
 ## Unreleased
 
+- Align the Data dependency and registry lock with the validated 0.8.2
+  contract baseline so packed local consumers resolve the required leaf.
+
 - Preserve linked document entries for Device, Location, Coverage, Appointment
   and AppointmentResponse through the explicit FHIR document-support profile.
   Bind imported or generated subject/patient claims to the selected subject
