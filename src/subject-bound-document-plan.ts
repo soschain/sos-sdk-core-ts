@@ -107,11 +107,13 @@ export function prepareR4DocumentForSubject(bundle: unknown, subjectDid: string)
     const existing = record(meta.claims) ? meta.claims : {}
     const claims: JsonRecord = {...project(resource), ...existing}
     if (type !== ResourceTypesFhirR4.Patient) for (const field of ['subject', 'patient']) {
-      if (!record(resource[field]) || !text(resource[field].reference)) continue
       const key = `${type}.${field}`
-      claims[key] = subject
       const qualified = `${IndexedClaimsContext}.${key}`
-      if (Object.prototype.hasOwnProperty.call(existing, qualified)) claims[qualified] = subject
+      const qualifiedPresent = Object.prototype.hasOwnProperty.call(claims, qualified)
+      const nativeReference = record(resource[field]) && text(resource[field].reference)
+      if (!nativeReference && !Object.prototype.hasOwnProperty.call(claims, key) && !qualifiedPresent) continue
+      claims[key] = subject
+      if (qualifiedPresent) claims[qualified] = subject
     }
     const sections = type === ResourceTypesFhirR4.Composition ? membership.tokens : aliases(entry).flatMap(alias => membership.references.get(alias) ?? [])
     if (sections.length) claims[CompositionClaim.Section] = [...new Set(sections)].join(',')

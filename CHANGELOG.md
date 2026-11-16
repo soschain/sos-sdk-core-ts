@@ -3,6 +3,11 @@
 
 ## Unreleased
 
+- Preserve linked document entries for Device, Location, Coverage, Appointment
+  and AppointmentResponse through the explicit FHIR document-support profile.
+  Bind imported or generated subject/patient claims to the selected subject
+  even when the corresponding native reference is absent.
+
 - Build permission-request Communications with one draft Consent using owned
   SOS contracts and FHIR codes. Retain the existing request wire, accept
   phone-bound requesters and require explicit identifiers and scoped targets.

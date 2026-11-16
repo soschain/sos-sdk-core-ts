@@ -191,7 +191,10 @@ and `sos-sdk-core-ts/subject-bound-document-plan`. Call it after selecting and
 authorizing the individual. It returns a cloned document with indexed claim
 projections, recursive Composition section links and the selected subject's
 references. Existing metadata and claim arrays retain their values, except
-subject/patient bindings. Patient names and internal resource IDs remain
+subject/patient bindings. Flat subject/patient claims follow that binding even
+when their native reference is absent. Linked Device, Location, Coverage,
+Appointment and AppointmentResponse entries retain their native fields and
+business identifiers. Patient names and internal resource IDs remain
 source fields; business identifiers come from the source identifiers.
 
 The planner uses the explicit semantic, document-support and structural
