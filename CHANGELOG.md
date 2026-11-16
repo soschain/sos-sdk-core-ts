@@ -3,6 +3,10 @@
 
 ## Unreleased
 
+- Build permission-request Communications with one draft Consent using owned
+  SOS contracts and FHIR codes. Retain the existing request wire, accept
+  phone-bound requesters and require explicit identifiers and scoped targets.
+
 - Add `prepareR4DocumentForSubject` to plan an authorized individual's document
   import using the FHIR data utilities' explicit conversion profiles. Preserve
   recursive section membership, source metadata and existing claim arrays;

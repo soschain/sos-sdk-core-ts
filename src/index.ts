@@ -32,3 +32,4 @@ export * from './consent-access-editor.js';
 export * from './gateway-routing.js';
 export * from './gateway-response-reader.js';
 export * from './subject-bound-document-plan.js';
+export * from './permission-request.js';

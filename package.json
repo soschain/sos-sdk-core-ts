@@ -12,6 +12,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./permission-request": {
+      "types": "./dist/permission-request.d.ts",
+      "default": "./dist/permission-request.js"
+    },
     "./subject-bound-document-plan": {
       "types": "./dist/subject-bound-document-plan.d.ts",
       "default": "./dist/subject-bound-document-plan.js"
