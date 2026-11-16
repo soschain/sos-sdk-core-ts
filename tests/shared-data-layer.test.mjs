@@ -20,7 +20,7 @@ test('depends on SOS-owned data and FHIR contracts without inheriting a frozen o
   assert.equal(manifest.dependencies['uhc-sdk-core-ts'], undefined)
   assert.equal(manifest.dependencies['vet-sdk-core-ts'], undefined)
   assert.equal(manifest.dependencies['gdc-common-utils-ts'], undefined)
-  assert.equal(installedFhirManifest.version, manifest.dependencies['fhir-data-utils-ts'])
+  assert.equal(installedFhirManifest.version, process.env.FHIR_DATA_UTILS_TEST_VERSION ?? manifest.dependencies['fhir-data-utils-ts'])
   assert.doesNotMatch(indexSource, /(?:uhc|vet)-sdk-core-ts/)
   assert.equal(manifest.exports['./emergency-group'], undefined)
   assert.equal(manifest.exports['./place-card-association'], undefined)

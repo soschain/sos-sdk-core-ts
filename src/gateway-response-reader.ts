@@ -104,3 +104,10 @@ export function summarizeBundleResponse(input:unknown):BundleResponseSummary{
   }
   return {totalOperations:entries.length,successfulOperations,errorOperations:entries.length-successfulOperations,hasWarnings,hasErrors,issueDiagnostics}
 }
+
+/** Returns only the first operation's canonical resource claims; no fallback to a later entry. */
+export function getClaimsInFirstDataEntry(input:unknown):Record<string,unknown>{
+ const bundle=record(input)
+ const entries=Array.isArray(bundle?.data)?bundle.data:Array.isArray(bundle?.entry)?bundle.entry:[]
+ return record(record(record(record(entries[0])?.resource)?.meta)?.claims)??{}
+}

@@ -99,6 +99,22 @@
     "./gateway-response-reader": {
       "types": "./dist/gateway-response-reader.d.ts",
       "default": "./dist/gateway-response-reader.js"
+    },
+    "./reminder-permissions": {
+      "types": "./dist/reminder-permissions.d.ts",
+      "default": "./dist/reminder-permissions.js"
+    },
+    "./research-study": {
+      "types": "./dist/research-study.d.ts",
+      "default": "./dist/research-study.js"
+    },
+    "./license-list-search": {
+      "types": "./dist/license-list-search.d.ts",
+      "default": "./dist/license-list-search.js"
+    },
+    "./individual-summary-request": {
+      "types": "./dist/individual-summary-request.d.ts",
+      "default": "./dist/individual-summary-request.js"
     }
   },
   "files": [
