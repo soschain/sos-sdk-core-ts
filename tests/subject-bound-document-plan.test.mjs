@@ -3,14 +3,16 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import {FhirCodeSystems} from 'fhir-data-utils-ts'
 import {IndexedClaimsContext} from 'fhir-data-utils-ts/indexed-r4'
+import {REPOSITORY_SAFE_EXAMPLES as E} from 'sos-data-utils-ts/repository-privacy'
 import * as sdk from '../dist/index.js'
 
-const subject='did:web:example.test:individual:subject-one'
+const subject=E.didWeb+':individual:subject-one'
+const unauthorizedSubject=E.didWeb+':individual:unauthorized'
 const qualifiedSubjectClaim=`${IndexedClaimsContext}.Condition.subject`
 function input(){return {resourceType:'Bundle',type:'document',entry:[
  {fullUrl:'urn:uuid:composition-one',resource:{resourceType:'Composition',id:'composition-one',status:'final',subject:{reference:'Patient/patient-one'},section:[{code:{coding:[{system:'http://loinc.org',code:'11450-4'}]},entry:[{reference:'Condition/condition-one'}],section:[{code:{coding:[{system:'http://loinc.org',code:'48765-2'}]},entry:[{reference:'urn:uuid:condition-one'}]}]}]}},
- {fullUrl:'urn:uuid:patient-one',resource:{resourceType:'Patient',id:'patient-one',name:[{given:['Synthetic'],family:'Individual'}]}},
- {fullUrl:'urn:uuid:condition-one',resource:{resourceType:'Condition',id:'condition-one',subject:{reference:'Patient/patient-one'},code:{coding:[{system:FhirCodeSystems.SnomedCt,code:'123456'}]},meta:{tag:[{code:'source-tag'}],claims:{'Condition.subject':'did:web:other.test:unauthorized',[qualifiedSubjectClaim]:'did:web:other.test:unauthorized','Condition.custom':['retained'],'Condition.code':'source-precedence'}}}},
+ {fullUrl:'urn:uuid:patient-one',resource:{resourceType:'Patient',id:'patient-one',name:[{given:[E.individualGivenName],family:E.personFamilyName}]}},
+ {fullUrl:'urn:uuid:condition-one',resource:{resourceType:'Condition',id:'condition-one',subject:{reference:'Patient/patient-one'},code:{coding:[{system:FhirCodeSystems.SnomedCt,code:'123456'}]},meta:{tag:[{code:'source-tag'}],claims:{'Condition.subject':unauthorizedSubject,[qualifiedSubjectClaim]:unauthorizedSubject,'Condition.custom':['retained'],'Condition.code':'source-precedence'}}}},
 ]}}
 
 test('the subject-bound planner is exported by SOS Core',()=>{

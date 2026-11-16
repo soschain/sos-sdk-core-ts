@@ -174,6 +174,16 @@ Keep `analyzeBundleChangesResponse` for stable submitted-change correlation;
 its distinct status/outcome rules are unchanged.
 This small API does not implement the broader clinical document Bundle reader.
 
+## Permission requests
+
+`buildPermissionRequestCommunication(input)` is available from the root and
+`sos-sdk-core-ts/permission-request`. It stages a Communication with one draft
+Consent containing the requested sections or resource families and the
+requester's identifiers. Requesters can use a registered DID and telephone;
+email is optional. Supply both resource identifiers and the thread identifier
+so retries retain their correlation. The controller approves the proposal
+through the normal Consent workflow.
+
 ## Subject-bound clinical document imports
 
 `prepareR4DocumentForSubject(bundle, subjectDid)` is available from the root
