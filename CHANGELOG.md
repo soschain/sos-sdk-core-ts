@@ -1,6 +1,15 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
+## Unreleased
+
+- Add `prepareR4DocumentForSubject` to plan an authorized individual's document
+  import using the FHIR data utilities' explicit conversion profiles. Preserve
+  recursive section membership, source metadata and existing claim arrays;
+  replace imported subject/patient references with the selected subject.
+  Keep Patient internal IDs separate from business identifiers and reject
+  unsupported resource families explicitly.
+
 ## 0.7.1
 
 - Plan an optional literal patient Communication with the emergency

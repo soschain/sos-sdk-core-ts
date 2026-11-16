@@ -31,3 +31,4 @@ export * from './clinical-resource-replacement.js'
 export * from './consent-access-editor.js';
 export * from './gateway-routing.js';
 export * from './gateway-response-reader.js';
+export * from './subject-bound-document-plan.js';

@@ -12,6 +12,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./subject-bound-document-plan": {
+      "types": "./dist/subject-bound-document-plan.d.ts",
+      "default": "./dist/subject-bound-document-plan.js"
+    },
     "./clinical-creator": {
       "types": "./dist/clinical-creator.d.ts",
       "default": "./dist/clinical-creator.js"
