@@ -1,6 +1,16 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
+## Unreleased
+
+- Plan an optional literal patient Communication with the emergency
+  ServiceRequest and triage Task. Bind its subject, sender and recipient to the
+  same normalized intake; preserve an explicitly supplied Encounter link on
+  the ServiceRequest and retain the existing message-free graph.
+- Consume the verified FHIR 0.7.1 contracts and preserve all other dependency
+  versions. The full 121-case native matrix and strict compilation pass against
+  a fresh registry installation.
+
 ## 0.7.0 - 2026-11-15
 
 - Summarize response-only operation counts and ordered diagnostics without

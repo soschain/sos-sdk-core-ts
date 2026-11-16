@@ -19,6 +19,9 @@ import {
   type ClinicalCoding,
 } from 'fhir-data-utils-ts/care-emergency-alert'
 import type { FlatClaimResourceEntry } from 'fhir-data-utils-ts/flat-claim-resource-graph'
+import {buildFlatClaimResourceEntry} from 'fhir-data-utils-ts/flat-claim-resource-graph'
+import {CommunicationClaim} from 'fhir-data-utils-ts/claims'
+import {communicationPayloadItemFhirR4ToFlat} from 'fhir-data-utils-ts/converters'
 
 export type FulfilledAppointmentEncounterPlan =
   | Readonly<{ created: false; encounterReference: string }>
@@ -100,17 +103,26 @@ export function authorizeEncounterCommunication(input: Readonly<{
   })
 }
 
-/** Creates independent standard ServiceRequest and durable triage Task entries. */
-export function orchestrateEmergencyRequest(input: Readonly<{
+export type EmergencyRequestInput = Readonly<{
   intake: EmergencyIntake
   serviceRequestIdentifier: string
   triageTaskIdentifier: string
   assistanceCode: ClinicalCoding
-}>): Readonly<{
+  /** Existing Encounter context; it never replaces the ServiceRequest or triage focus. */
+  encounterReference?: string
+  /** Routing and actors come exclusively from the same normalized intake. */
+  patientMessage?: Readonly<{entryId: string; identifier: string; text: string}>
+}>
+
+export type EmergencyRequestPlan = Readonly<{
   intake: EmergencyIntake
   serviceRequestEntry: FlatClaimResourceEntry
   triageTaskEntry: FlatClaimResourceEntry
-}> {
+  communicationEntry?: FlatClaimResourceEntry
+}>
+
+/** Plans independent request, triage and optional message resources; no transport acknowledgement is inferred. */
+export function orchestrateEmergencyRequest(input: EmergencyRequestInput): EmergencyRequestPlan {
   const intake = normalizeEmergencyIntake(input.intake)
   const triageGroupReference = reference(
     intake.triageOwnerReference,
@@ -128,6 +140,9 @@ export function orchestrateEmergencyRequest(input: Readonly<{
     requesterReference: intake.requesterReference,
     performerReferences: [intake.targetServiceReference],
     authoredAt: intake.receivedAt,
+    ...(input.encounterReference === undefined ? {} : {
+      encounterReference: reference(input.encounterReference, 'Encounter', 'emergency_encounter_reference_invalid'),
+    }),
   })
   const baseTriageTaskEntry = buildServiceRequestTriageTaskFlatEntry({
     entryId: intake.triageTaskEntryId,
@@ -145,7 +160,26 @@ export function orchestrateEmergencyRequest(input: Readonly<{
       [TaskClaim.GroupIdentifier]: intake.communicationThreadId,
     }),
   })
-  return Object.freeze({ intake, serviceRequestEntry, triageTaskEntry })
+  if(input.patientMessage === undefined)return Object.freeze({ intake, serviceRequestEntry, triageTaskEntry })
+  const message=input.patientMessage
+  if(!message||typeof message!=='object'||Array.isArray(message)
+    ||Object.keys(message).some(key=>!['entryId','identifier','text'].includes(key)))throw new TypeError('emergency_patient_message_invalid')
+  const payload=communicationPayloadItemFhirR4ToFlat({contentString:message.text})
+  const contentString=payload[CommunicationClaim.ContentString]
+  if(contentString===undefined)throw new TypeError('emergency_patient_message_invalid')
+  const communicationEntry=buildFlatClaimResourceEntry({
+    entryId:message.entryId,resourceType:'Communication',claims:{
+      [CommunicationClaim.Identifier]:scalarClaim(message.identifier,'emergency_patient_message_identifier_required'),
+      [CommunicationClaim.Status]:'completed',
+      [CommunicationClaim.Subject]:intake.subjectReference,
+      [CommunicationClaim.Sender]:intake.requesterReference,
+      [CommunicationClaim.Recipient]:intake.targetServiceReference,
+      [CommunicationClaim.Sent]:intake.receivedAt,
+      [CommunicationClaim.BasedOn]:serviceRequestEntry.reference,
+      [CommunicationClaim.ContentString]:contentString,
+    },
+  })
+  return Object.freeze({ intake, serviceRequestEntry, triageTaskEntry, communicationEntry })
 }
 
 export type EmergencyTriageAction = 'acknowledge' | 'start' | 'escalate' | 'reject' | 'complete'

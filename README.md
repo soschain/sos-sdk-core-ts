@@ -125,6 +125,13 @@ donation/public-risk campaigns. Transport,
 persistence, authorization evidence acquisition and product policy remain in
 the channel service, Node adapter and downstream application layers.
 
+`orchestrateEmergencyRequest` can include `patientMessage` with an entry ID,
+business identifier and literal text. Its independent Communication references
+the ServiceRequest and uses the intake's subject, requester and selected service.
+An optional `encounterReference` links existing care context on the request;
+the triage Task continues to focus on the ServiceRequest. The Node adapter owns
+the atomic write and retry policy.
+
 Emergency triage starts with a professional Group owner and changes to the
 accepting PractitionerRole. The Group remains a reply queue, never the
 clinical-document author or human Communication sender; those identities stay
