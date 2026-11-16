@@ -121,7 +121,7 @@
     "@noble/hashes": "2.4.0",
     "@noble/post-quantum": "0.7.1",
     "antifraud-data-utils-ts": "0.3.0",
-    "fhir-data-utils-ts": "0.7.0",
+    "fhir-data-utils-ts": "0.7.1",
     "sos-data-utils-ts": "0.8.0"
   },
   "devDependencies": {
