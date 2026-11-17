@@ -3,6 +3,11 @@
 
 ## Unreleased
 
+- Align the registry lock and manifest with published Antifraud Data 0.3.4 and
+  FHIR Data 0.7.2. Keep the unpublished SOS Data 0.8.3 candidate explicit in local
+  tests. The cumulative patch release remains planned as 0.7.2 after its
+  dependency publication and consumer checks.
+
 - Align the Data dependency and registry lock with the validated 0.8.2
   contract baseline so packed local consumers resolve the required leaf.
 
