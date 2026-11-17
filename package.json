@@ -146,7 +146,7 @@
     "@noble/post-quantum": "0.7.1",
     "antifraud-data-utils-ts": "0.3.4",
     "fhir-data-utils-ts": "0.7.2",
-    "sos-data-utils-ts": "0.8.2"
+    "sos-data-utils-ts": "0.8.3"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
