@@ -125,6 +125,13 @@ donation/public-risk campaigns. Transport,
 persistence, authorization evidence acquisition and product policy remain in
 the channel service, Node adapter and downstream application layers.
 
+`orchestrateEmergencyRequest` can include `patientMessage` with an entry ID,
+business identifier and literal text. Its independent Communication references
+the ServiceRequest and uses the intake's subject, requester and selected service.
+An optional `encounterReference` links existing care context on the request;
+the triage Task continues to focus on the ServiceRequest. The Node adapter owns
+the atomic write and retry policy.
+
 Emergency triage starts with a professional Group owner and changes to the
 accepting PractitionerRole. The Group remains a reply queue, never the
 clinical-document author or human Communication sender; those identities stay
@@ -166,6 +173,36 @@ Counts do not establish submitted-change identity, authorization or delivery.
 Keep `analyzeBundleChangesResponse` for stable submitted-change correlation;
 its distinct status/outcome rules are unchanged.
 This small API does not implement the broader clinical document Bundle reader.
+
+## Permission requests
+
+`buildPermissionRequestCommunication(input)` is available from the root and
+`sos-sdk-core-ts/permission-request`. It stages a Communication with one draft
+Consent containing the requested sections or resource families and the
+requester's identifiers. Requesters can use a registered DID and telephone;
+email is optional. Supply both resource identifiers and the thread identifier
+so retries retain their correlation. The controller approves the proposal
+through the normal Consent workflow.
+
+## Subject-bound clinical document imports
+
+`prepareR4DocumentForSubject(bundle, subjectDid)` is available from the root
+and `sos-sdk-core-ts/subject-bound-document-plan`. Call it after selecting and
+authorizing the individual. It returns a cloned document with indexed claim
+projections, recursive Composition section links and the selected subject's
+references. Existing metadata and claim arrays retain their values, except
+subject/patient bindings. Flat subject/patient claims follow that binding even
+when their native reference is absent. Linked Device, Location, Coverage,
+Appointment and AppointmentResponse entries retain their native fields and
+business identifiers. Patient names and internal resource IDs remain
+source fields; business identifiers come from the source identifiers.
+
+The planner uses the explicit semantic, document-support and structural
+profiles in [FHIR Data Utilities](https://github.com/Fundacion-UNID/fhir-data-utils-ts).
+It rejects unsupported resource families, including the R5 EncounterHistory
+family, rather than choosing a converter from a URL or inferring a version.
+It checks the basic document structure; callers still handle identity
+confirmation, authorization, transport and persistence.
 
 ## Multi-recipient secure messages
 

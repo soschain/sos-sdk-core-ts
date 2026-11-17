@@ -38,3 +38,6 @@ export * from './research-study.js'
 export * from './license-list-search.js'
 
 export * from './individual-summary-request.js'
+
+export * from './subject-bound-document-plan.js';
+export * from './permission-request.js';

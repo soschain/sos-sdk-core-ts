@@ -1,6 +1,6 @@
 {
   "name": "sos-sdk-core-ts",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Runtime-neutral shared orchestration for multichannel healthcare and emergency services",
   "license": "Apache-2.0",
   "author": "Connecting Solution & Applications Ltd",
@@ -12,6 +12,14 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./permission-request": {
+      "types": "./dist/permission-request.d.ts",
+      "default": "./dist/permission-request.js"
+    },
+    "./subject-bound-document-plan": {
+      "types": "./dist/subject-bound-document-plan.d.ts",
+      "default": "./dist/subject-bound-document-plan.js"
+    },
     "./clinical-creator": {
       "types": "./dist/clinical-creator.d.ts",
       "default": "./dist/clinical-creator.js"
@@ -137,8 +145,8 @@
     "@noble/hashes": "2.4.0",
     "@noble/post-quantum": "0.7.1",
     "antifraud-data-utils-ts": "0.3.0",
-    "fhir-data-utils-ts": "0.7.0",
-    "sos-data-utils-ts": "0.8.0"
+    "fhir-data-utils-ts": "0.7.1",
+    "sos-data-utils-ts": "0.8.2"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

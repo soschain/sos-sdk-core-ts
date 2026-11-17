@@ -15,6 +15,35 @@
   Group commands from independent FHIR/SOS Data contracts, preserving existing
   UUID correlation and separating membership from access authority.
 
+- Align the Data dependency and registry lock with the validated 0.8.2
+  contract baseline so packed local consumers resolve the required leaf.
+
+- Preserve linked document entries for Device, Location, Coverage, Appointment
+  and AppointmentResponse through the explicit FHIR document-support profile.
+  Bind imported or generated subject/patient claims to the selected subject
+  even when the corresponding native reference is absent.
+
+- Build permission-request Communications with one draft Consent using owned
+  SOS contracts and FHIR codes. Retain the existing request wire, accept
+  phone-bound requesters and require explicit identifiers and scoped targets.
+
+- Add `prepareR4DocumentForSubject` to plan an authorized individual's document
+  import using the FHIR data utilities' explicit conversion profiles. Preserve
+  recursive section membership, source metadata and existing claim arrays;
+  replace imported subject/patient references with the selected subject.
+  Keep Patient internal IDs separate from business identifiers and reject
+  unsupported resource families explicitly.
+
+## 0.7.1
+
+- Plan an optional literal patient Communication with the emergency
+  ServiceRequest and triage Task. Bind its subject, sender and recipient to the
+  same normalized intake; preserve an explicitly supplied Encounter link on
+  the ServiceRequest and retain the existing message-free graph.
+- Consume the verified FHIR 0.7.1 contracts and preserve all other dependency
+  versions. The full 121-case native matrix and strict compilation pass against
+  a fresh registry installation.
+
 ## 0.7.0 - 2026-11-15
 
 - Summarize response-only operation counts and ordered diagnostics without
