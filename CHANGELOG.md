@@ -1,7 +1,7 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
-## 0.7.2
+## 0.8.0
 
 - Compose individual summary-request Communications with explicit subject and requester, native Parameters attachments and requested sections. Preserve the receiving host's authorization boundary without inferred actor roles or consent.
 
