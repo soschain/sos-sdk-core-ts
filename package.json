@@ -144,9 +144,9 @@
     "@noble/ciphers": "2.4.0",
     "@noble/hashes": "2.4.0",
     "@noble/post-quantum": "0.7.1",
-    "antifraud-data-utils-ts": "0.3.4",
-    "fhir-data-utils-ts": "0.7.2",
-    "sos-data-utils-ts": "0.8.3"
+    "antifraud-data-utils-ts": "0.4.0",
+    "fhir-data-utils-ts": "0.8.0",
+    "sos-data-utils-ts": "0.8.4"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

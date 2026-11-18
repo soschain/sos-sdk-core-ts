@@ -3,6 +3,9 @@
 
 ## 0.8.0
 
+- Pin the verified Antifraud Data 0.4.0, FHIR Data 0.8.0 and SOS Data 0.8.4
+  registry artifacts with their exact lockfile integrity.
+
 - Compose individual summary-request Communications with explicit subject and requester, native Parameters attachments and requested sections. Preserve the receiving host's authorization boundary without inferred actor roles or consent.
 
 - Own semantic licence-list search composition and first-entry claims reading,
