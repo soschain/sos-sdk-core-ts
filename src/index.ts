@@ -31,5 +31,13 @@ export * from './clinical-resource-replacement.js'
 export * from './consent-access-editor.js';
 export * from './gateway-routing.js';
 export * from './gateway-response-reader.js';
+
+export * from './reminder-permissions.js'
+export * from './research-study.js'
+
+export * from './license-list-search.js'
+
+export * from './individual-summary-request.js'
+
 export * from './subject-bound-document-plan.js';
 export * from './permission-request.js';

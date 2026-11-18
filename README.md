@@ -224,3 +224,16 @@ ML-KEM, HKDF or AES logic. See [docs/SECURE_MESSAGES.md](docs/SECURE_MESSAGES.md
 npm install
 npm run check
 ```
+
+`evaluateReminderRuntimeAccess` from `sos-sdk-core-ts/reminder-permissions`
+requires an explicit stored policy for the task subject. Restricted purposes
+come from the policy bundle, never a caller override. Missing or malformed
+policy denies execution; the runtime still authenticates callers and controls
+who may create the stored policy. Grouping reminders grants no authority.
+
+`sos-sdk-core-ts/research-study` composes explicit active study Consent batches
+and empty descriptive review-team Group commands. It uses the independent
+FHIR projection and the existing SOS Data UUID correlation. A descriptive
+team never substitutes for registered role, Consent or SMART authorization.
+
+`individual-summary-request` composes a subject-bound `$summary` Communication carrying native FHIR Parameters. The requester and requested sections describe the request; they do not grant access. The receiving host validates the authenticated caller, SMART scope and consent. Omit sections to request the available summary; permission wildcards are rejected at this request boundary.

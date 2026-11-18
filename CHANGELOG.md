@@ -1,7 +1,19 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
-## Unreleased
+## 0.8.0
+
+- Compose individual summary-request Communications with explicit subject and requester, native Parameters attachments and requested sections. Preserve the receiving host's authorization boundary without inferred actor roles or consent.
+
+- Own semantic licence-list search composition and first-entry claims reading,
+  preserving state isolation and lifecycle filters outside canonical claims.
+
+- Own explicit subject-bound reminder policy evaluation using stored purpose and
+  channel restrictions. Missing or malformed policy denies execution; exact
+  actor specificity and equal-specificity deny rules remain deterministic.
+- Compose study-scoped active Consent batches and empty descriptive review-team
+  Group commands from independent FHIR/SOS Data contracts, preserving existing
+  UUID correlation and separating membership from access authority.
 
 ## 0.7.2 - 2026-11-17
 
