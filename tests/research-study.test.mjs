@@ -5,6 +5,16 @@ import {REPOSITORY_SAFE_EXAMPLES as SAFE} from 'sos-data-utils-ts/repository-pri
 import {ClaimConsent as C, HealthcareConsentPurposes} from 'fhir-data-utils-ts'
 import * as sdk from '../dist/index.js'
 const decision={consentId:SAFE.resourceUuid,researchStudyId:SAFE.resourceUuid,practitionerRoleId:SAFE.resourceUuid,actorRole:'ISCO-08|221',date:'2026-01-01'}
+test('builds the same exact study-scoped request for member access and the active Consent action',()=>{
+ const researchStudyId=SAFE.resourceUuid,reference=`ResearchStudy/${researchStudyId}`
+ const request=sdk.buildResearchStudyProfessionalSmartRequest(researchStudyId)
+ assert.deepEqual(request,{purpose:HealthcareConsentPurposes.Research,
+  scopes:[`organization/ResearchSubject.crus?study=${reference}`],tokenCacheKey:`research-study:${reference}`})
+ const action=sdk.buildResearchStudyActiveConsentBatch([decision]).data[0].resource.meta.claims[C.action]
+ assert.equal(request.scopes[0],action)
+ assert.equal(sdk.buildResearchStudyControllerImportScope(researchStudyId),`organization/ResearchSubject.c?study=${reference}`)
+ assert.throws(()=>sdk.buildResearchStudyProfessionalSmartRequest('other?study=ResearchStudy/additional'),/research_study_resource_id_invalid/u)
+})
 test('composes an explicit active study-scoped Consent batch without delete authority',()=>{
  assert.equal(typeof sdk.buildResearchStudyActiveConsentBatch,'function')
  const batch=sdk.buildResearchStudyActiveConsentBatch([decision]);const entry=batch.data[0],claims=entry.resource.meta.claims
