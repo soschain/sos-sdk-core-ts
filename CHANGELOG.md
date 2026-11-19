@@ -1,6 +1,11 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
+## 0.8.1
+
+- Build the same study-scoped SMART request for professional access and active
+  consent. Keep controller import scope limited to creating ResearchSubjects.
+
 ## 0.8.0
 
 - Pin the verified Antifraud Data 0.4.0, FHIR Data 0.8.0 and SOS Data 0.8.4
