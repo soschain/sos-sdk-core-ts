@@ -1,6 +1,11 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
+## Unreleased
+
+- Build ResearchStudy creation, review groups and draft invitations using the
+  shared FHIR contracts while preserving existing workflow IDs and payloads.
+
 ## 0.8.1
 
 - Build the same study-scoped SMART request for professional access and active

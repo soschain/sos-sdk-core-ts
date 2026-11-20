@@ -1,2 +1,6 @@
 sos-sdk-core-ts
 Copyright 2026 Connecting Solution & Applications Ltd.
+
+The ResearchStudy workflow and invitation wire contracts adapted from
+vet-sdk-core-ts 0.8.2 retain Copyright 2026 Connecting Solution & Applications
+Ltd. under Apache License 2.0.
