@@ -1,6 +1,11 @@
 <!-- Copyright 2026 Connecting Solution & Applications Ltd under the Apache License, Version 2.0. -->
 # Changelog
 
+## Unreleased
+
+- Plan reviewed offering publication and ordered ResearchStudy DCAT writes
+  independently of transport.
+
 ## 0.8.2 - 2026-11-20
 
 - Build ResearchStudy creation, review groups and draft invitations using the

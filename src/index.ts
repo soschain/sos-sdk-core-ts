@@ -41,3 +41,4 @@ export * from './individual-summary-request.js'
 
 export * from './subject-bound-document-plan.js';
 export * from './permission-request.js';
+export * from './catalogue-publication.js'
