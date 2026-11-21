@@ -12,6 +12,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./catalogue-publication": {
+      "types": "./dist/catalogue-publication.d.ts",
+      "default": "./dist/catalogue-publication.js"
+    },
     "./permission-request": {
       "types": "./dist/permission-request.d.ts",
       "default": "./dist/permission-request.js"
