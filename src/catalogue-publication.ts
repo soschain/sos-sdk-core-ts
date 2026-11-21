@@ -27,6 +27,50 @@ export function readOfferingPublicationReceipt(value: unknown, expectedTotal?: n
   return { total }
 }
 
+export type OfferingReference = Readonly<{ type: 'Product' | 'Service'; id: string }>
+export type OfferingReferenceInput = OfferingReference & Readonly<{ operationId: string }>
+
+/** Only an exact JSON:API resource identifier belongs in a withdrawal or history request. */
+export function planOfferingReference({ type, id, operationId }: OfferingReferenceInput) {
+  if ((type !== 'Product' && type !== 'Service') || typeof id !== 'string'
+      || !id || id.length > 2000 || id !== id.trim() || id === '*'
+      || typeof operationId !== 'string' || !/^[A-Za-z0-9:_.-]{1,200}$/u.test(operationId)) {
+    throw new TypeError('catalog_offering_reference_invalid')
+  }
+  return { document: { data: { type, id } }, operationId }
+}
+
+export type OfferingHistoryVersion = Readonly<{
+  versionId: string
+  contentHash: string
+  status: 'imported' | 'published' | 'withdrawn'
+  offering: Row & OfferingReference
+  recordedAt?: string
+}>
+
+/** Binds every returned version to the resource the controller requested. */
+export function readOfferingHistoryReceipt(value: unknown, reference: OfferingReference) {
+  const receipt = record(value)
+  const entries = record(receipt?.body)?.versions
+  if (receipt?.type !== 'org.schema.catalog-history' || !Array.isArray(entries)) return
+  const versions: OfferingHistoryVersion[] = []
+  for (const entry of entries) {
+    const row = record(entry)
+    const offering = record(row?.offering)
+    if (!row || !offering || offering.type !== reference.type || offering.id !== reference.id
+        || typeof row.versionId !== 'string' || !row.versionId
+        || typeof row.contentHash !== 'string' || !/^[a-f0-9]{64}$/u.test(row.contentHash)
+        || (row.status !== 'imported' && row.status !== 'published' && row.status !== 'withdrawn')
+        || (row.recordedAt !== undefined && (typeof row.recordedAt !== 'string' || !Number.isFinite(Date.parse(row.recordedAt))))) return
+    versions.push({
+      versionId: row.versionId, contentHash: row.contentHash, status: row.status,
+      offering: { ...offering, type: reference.type, id: reference.id },
+      ...(row.recordedAt !== undefined ? { recordedAt: row.recordedAt } : {}),
+    })
+  }
+  return { versions }
+}
+
 export type ResearchStudyDatasetPublicationInput = Readonly<{
   distribution: unknown
   dataService: unknown
