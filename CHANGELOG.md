@@ -3,6 +3,8 @@
 
 ## Unreleased
 
+## 0.8.3 - 2026-11-25
+
 - Plan exact offering withdrawal and history requests and validate that
   returned versions belong to the requested product or service.
 
