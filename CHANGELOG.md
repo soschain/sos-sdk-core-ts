@@ -3,6 +3,9 @@
 
 ## Unreleased
 
+- Plan exact offering withdrawal and history requests and validate that
+  returned versions belong to the requested product or service.
+
 - Plan reviewed offering publication and ordered ResearchStudy DCAT writes
   independently of transport.
 
